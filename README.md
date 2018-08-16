@@ -75,3 +75,27 @@ Run the server
 python3 manage.py runserver
 ```
 Now open localhost:8000 in the browser
+
+## Development with Docker
+
+Inside the root of source,
+
+1. Build a docker image
+
+```shell
+docker build . -t rescuekerala
+```
+
+2. After the container is built. Run the container
+
+```shell
+docker run -it -p 8000:8000 -v `pwd`:/usr/src/app rescuekerala
+```
+
+3. Docker will launch you to the terminal of the container, in here
+
+```shell
+python manage.py runserver 0.0.0.0:8000
+```
+
+The server should be accessible in the host machine at 127.0.0.1:8000
