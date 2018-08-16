@@ -42,13 +42,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # ALLOWED_HOSTS = ['127.0.0.1', 'keralarescue.herokuapp.com', 'keralarescue.in', 'www.keralarescue.in', 'localhost']
 ALLOWED_HOSTS = get_list(os.environ.get('ALLOWED_HOSTS'))
 
-
-RAVEN_CONFIG = {
-    'dsn': env('SENTRY_DSN'),
-    # If you are using git, you can also automatically configure the
-    # release based on the git info.
-    # 'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
-}
+if not DEBUG:
+    RAVEN_CONFIG = {
+        'dsn': env('SENTRY_DSN'),
+        # If you are using git, you can also automatically configure the
+        # release based on the git info.
+        # 'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
+    }
 
 
 
