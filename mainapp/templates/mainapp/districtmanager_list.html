@@ -21,8 +21,7 @@
     {% for req in filter.qs %}
         <tr>
           <td>{{ req.name }}</td>
-          <td>{{ req.phone }}</td>
-          <td>{{ req.email }}</td>
+          <td><a href="tel:{{ req.phone }}">{{ req.phone }}</a></td>          <td>{{ req.email }}</td>
         </tr>
     {% endfor %}
   </table>

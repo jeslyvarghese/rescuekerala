@@ -11,7 +11,7 @@
   </button>
   {% endbuttons %}
   </form>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript">
 	try {
 
@@ -39,6 +39,39 @@
   	}
 	catch(err) {
 		console.log("Your browser does not allow some javascript programs.\nError Message : " + err.message)
+	}
+
+	window.onload = function(){
+
+		var gpsField = document.getElementById('id_latlng');
+		gpsField.readOnly = true;
+		var gpsAccuracyField = document.getElementById('id_latlng_accuracy');
+		gpsAccuracyField.readOnly = true;
+		var options = {
+			enableHighAccuracy: true
+		};
+
+		var success = function(pos) {
+			var crd = pos.coords;
+				gpsField.value = crd.latitude + "," + crd.longitude;
+				gpsAccuracyField.value = crd.accuracy + ' Meters';
+				$.get('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + crd.latitude + '&lon=' + crd.longitude + '&zoom=18&addressdetails=1')
+					.done(function(response) {
+						var inputElem = $('<input class="form-control" readonly="true" value="' + response.display_name + '"</input>')
+						$(gpsField).before(inputElem);
+						$(gpsField).hide();
+						console.log(response.display_name);
+					})
+					.fail(function(err){
+						console.log(err);
+					});
+		}
+
+		var error = function(err) {
+			console.warn(`ERROR(${err.code}): ${err.message}`);
+		}
+
+		navigator.geolocation.getCurrentPosition(success, error, options);
 	}
 
   </script>

@@ -5,6 +5,7 @@ from django.views.generic.base import TemplateView
 from .models import Request, Volunteer, DistrictManager, Contributor, DistrictNeed
 import django_filters
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.http import JsonResponse
 
 class CreateRequest(CreateView):
     model = Request
@@ -14,6 +15,8 @@ class CreateRequest(CreateView):
         'location',
         'requestee',
         'requestee_phone',
+        'latlng',
+        'latlng_accuracy',
         'needwater',
         'detailwater',
         'needfood',
@@ -116,3 +119,9 @@ def districtmanager_list(request):
 
 class Maintenance(TemplateView):
     template_name = "mainapp/maintenance.html"
+
+
+def mapdata(request):
+    data = Request.objects.exclude(latlng__exact="").values()
+
+    return JsonResponse(list(data) , safe=False) 

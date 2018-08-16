@@ -52,6 +52,9 @@ Copy sample environment file and configure it as per your local settings
 cp .env.example .env
 ```
 
+If you cant copy the environment or is facing difficulty in starting the server , Copy the settings file from
+https://github.com/vigneshhari/keralarescue_test_settings for local testing
+
 Install dependencies
 
 ```

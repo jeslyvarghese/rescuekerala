@@ -39,6 +39,8 @@ vol_categories = (
     ('ckg', 'Cooking'),
     ('rlo', 'Relief operation'),
     ('cln', 'Cleaning'),
+    ('bot', 'Boat Service'),
+    ('rck', 'Rock Climbing'),
     ('oth', 'Other')
 )
 
@@ -51,6 +53,8 @@ class Request(models.Model):
     location = models.CharField(max_length=500,verbose_name='Location - സ്ഥലം')
     requestee = models.CharField(max_length=100,verbose_name='Requestee - അപേക്ഷകന്‍റെ പേര്')
     requestee_phone = models.CharField(max_length=10,verbose_name='Requestee Phone - അപേക്ഷകന്‍റെ ഫോണ്‍ നമ്പര്‍')
+    latlng = models.CharField(max_length=100, verbose_name='GPS Coordinates - GPS നിർദ്ദേശാങ്കങ്ങൾ ', blank=True)
+    latlng_accuracy = models.CharField(max_length=100, verbose_name='GPS Accuracy - GPS കൃത്യത ', blank=True)
 
     needwater = models.BooleanField(verbose_name='Water - വെള്ളം')
     needfood = models.BooleanField(verbose_name='Food - ഭക്ഷണം')

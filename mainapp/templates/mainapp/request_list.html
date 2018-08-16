@@ -12,6 +12,7 @@
     <tr>
       <th>District</th>
       <th>Location</th>
+      <th>GPS Location</th>
       <th>Requestee</th>
       <th>Contact number</th>
       <th>Summary of request</th>
@@ -20,7 +21,16 @@
     {% for req in data %}
         <tr>
           <td>{{ req.get_district_display }}</td>
-          <td>{{ req.location  }}</td>
+          <td>{{ req.location }}</td>
+          <td>
+            {% if req.latlng %}
+              <a class="btn btn-sm btn-success" href="https://maps.google.com/?q={{ req.latlng }}" target="_blank">Open in maps</a>
+              <br>
+              Accuracy: {{ req.latlng_accuracy }}
+            {% else %}
+              NA
+            {% endif %}
+          </td>
           <td>{{ req.requestee }}</td>
           <td>{{ req.requestee_phone }}</td> 
           <td>{{ req.summarise | linebreaks }}</td>
