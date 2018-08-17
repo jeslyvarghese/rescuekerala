@@ -23,7 +23,7 @@
           <td>{{ req.get_district_display }}</td>
           <td>{{ req.location }}</td>
           <td>
-            {% if req.latlng %}
+            {% if not req.is_request_for_others and req.latlng %}
               <a class="btn btn-sm btn-success" href="https://maps.google.com/?q={{ req.latlng }}" target="_blank">Open in maps</a>
               <br>
               Accuracy: {{ req.latlng_accuracy }}
@@ -32,7 +32,7 @@
             {% endif %}
           </td>
           <td>{{ req.requestee }}</td>
-          <td>{{ req.requestee_phone }}</td> 
+          <td><a href="tel:{{ req.requestee_phone }}" >{{ req.requestee_phone }}</a></td> 
           <td>{{ req.summarise | linebreaks }}</td>
           <td>{{ req.dateadded }}</td>
         </tr>

@@ -1,6 +1,5 @@
 body{
     background: #ededed;
-    font-family: 'Raleway';
 }
 .navbar{
     padding: 15px 30px;
@@ -135,14 +134,12 @@ footer{
 table {
     border-collapse: collapse;
     width: 100%;
-    table-layout:fixed;
 }
 
 td, th {
     border: 1px solid #cccccc;
     text-align: left;
     padding: 14px 8px;
-    word-wrap:break-word;
 }
 
 tr:nth-child(even) {
@@ -184,4 +181,3 @@ tr:hover td{
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
-
